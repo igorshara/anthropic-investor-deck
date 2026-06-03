@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="google" content="notranslate" />
+<title>Anthropic — Investor Presentation</title>
+<meta property="og:title" content="Anthropic — Investor Presentation" />
+<meta property="og:description" content="The frontier of safe, useful AI · June 2026" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --cream:#F0EEE6; --cream2:#E7E4D8; --ink:#19150F; --ink2:#0E0E0C;
+  --coral:#D97757; --coral2:#E8987A; --rust:#BD5D3A;
+  --muted-d:rgba(240,238,230,.6); --muted-l:rgba(25,21,15,.56);
+  --line-d:rgba(240,238,230,.16); --line-l:rgba(25,21,15,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font:"Inter","SF Pro Display",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:var(--font);background:#050403;color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased;cursor:default}
+.deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+.slide{height:100vh;width:100vw;display:flex;align-items:center;justify-content:center;scroll-snap-align:start;scroll-snap-stop:always;position:relative}
+.stage{position:relative;width:min(96vw,calc(100vh*16/9));height:min(54vw,100vh);aspect-ratio:16/9;container-type:size;border-radius:1vw;overflow:hidden;box-shadow:0 4vw 9vw -3vw rgba(0,0,0,.75);background:var(--cream)}
+.slide[data-theme="dark"] .stage,.slide[data-theme="ink"] .stage{background:var(--ink2);color:var(--cream)}
+
+.pad{position:absolute;inset:0;padding:5cqw 5.6cqw;z-index:3}
+.eyebrow{font-size:1.15cqw;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--coral)}
+.slide[data-theme="dark"] .eyebrow,.slide[data-theme="ink"] .eyebrow{color:var(--coral2)}
+.kicker{font-size:1.1cqw;font-weight:500;color:var(--muted-l)}
+.slide[data-theme="dark"] .kicker,.slide[data-theme="ink"] .kicker{color:var(--muted-d)}
+h1.disp{font-weight:700;letter-spacing:-.045em;line-height:.92}
+h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
+.body{font-size:1.55cqw;line-height:1.5;color:var(--muted-l);max-width:34cqw}
+.slide[data-theme="dark"] .body,.slide[data-theme="ink"] .body{color:var(--muted-d)}
+
+/* register + footer */
+.reg{position:absolute;top:3cqw;left:5.6cqw;right:5.6cqw;height:1px;background:var(--line-l);z-index:3}
+.slide[data-theme="dark"] .reg,.slide[data-theme="ink"] .reg{background:var(--line-d)}
+.regnum{position:absolute;top:3.6cqw;left:5.6cqw;font-size:1cqw;font-weight:600;color:var(--muted-l);z-index:3}
+.regsec{position:absolute;top:3.6cqw;right:5.6cqw;font-size:1cqw;color:var(--muted-l);z-index:3}
+.slide[data-theme="dark"] .regnum,.slide[data-theme="ink"] .regnum,.slide[data-theme="dark"] .regsec,.slide[data-theme="ink"] .regsec{color:var(--muted-d)}
+.regsec b{color:var(--ink)} .slide[data-theme="dark"] .regsec b,.slide[data-theme="ink"] .regsec b{color:var(--cream)}
+.foot{position:absolute;left:5.6cqw;right:5.6cqw;bottom:2.6cqw;display:flex;justify-content:space-between;font-size:.85cqw;color:var(--muted-l);padding-top:1cqw;border-top:1px solid var(--line-l);z-index:3}
+.slide[data-theme="dark"] .foot,.slide[data-theme="ink"] .foot{color:var(--muted-d);border-color:var(--line-d)}
+.wm{font-weight:700;letter-spacing:-.02em;font-size:1.7cqw;display:inline-flex;align-items:center;gap:.6cqw}
+.wm .dot{width:1cqw;height:1cqw;border-radius:50%;background:var(--coral)}
+
+/* image bleed + scrim + ken burns + parallax */
+.bleed{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 14s ease;z-index:0}
+.is-active .bleed{transform:scale(1.12)}
+.scrim{position:absolute;inset:0;z-index:1}
+.scrim.b{background:linear-gradient(180deg,rgba(14,14,12,.15) 0%,rgba(14,14,12,.35) 42%,rgba(14,14,12,.82) 100%)}
+.scrim.l{background:linear-gradient(100deg,rgba(14,14,12,.8) 0%,rgba(14,14,12,.45) 42%,rgba(14,14,12,.08) 70%)}
+.scrim.full{background:rgba(14,14,12,.42)}
+.imgpanel{position:absolute;border-radius:1.2cqw;overflow:hidden;z-index:2}
+.imgpanel .bleed{border-radius:1.2cqw}
+
+/* cards */
+.card{background:rgba(25,21,15,.045);border:1px solid var(--line-l);border-radius:1.5cqw;padding:2.2cqw;position:relative;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.slide[data-theme="dark"] .card,.slide[data-theme="ink"] .card{background:rgba(240,238,230,.05);border-color:var(--line-d)}
+.card.coral{background:var(--coral);border-color:transparent;color:var(--cream)}
+.card.ink{background:var(--ink);border-color:transparent;color:var(--cream)}
+.card.glass{background:rgba(14,14,12,.34);backdrop-filter:blur(8px);border-color:rgba(240,238,230,.16);color:var(--cream)}
+.stat-num{font-weight:700;letter-spacing:-.045em;line-height:.9}
+.stat-lab{font-size:1.3cqw;line-height:1.3;margin-top:.9cqw;color:var(--muted-l)}
+.card.coral .stat-lab,.card.ink .stat-lab,.card.glass .stat-lab{color:rgba(240,238,230,.8)}
+.slide[data-theme="dark"] .stat-lab,.slide[data-theme="ink"] .stat-lab{color:var(--muted-d)}
+
+.r{opacity:0;transform:translateY(2.2cqw);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.is-active .r{opacity:1;transform:none;transition-delay:var(--d,0s)}
+.tilt{transform-style:preserve-3d}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5cqw}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3cqw}
+.colflow{position:absolute;left:5.6cqw;right:5.6cqw;top:14.5cqw;bottom:6.8cqw}
+
+/* cover */
+.cover-grid{position:absolute;inset:0;display:grid;grid-template-columns:1.05fr 1fr;z-index:3}
+.cover-l{padding:5.4cqw;display:flex;flex-direction:column;justify-content:space-between;background:var(--ink2);position:relative;z-index:3}
+.cover-r{position:relative}
+
+/* section cover text */
+.sc-wrap{position:absolute;left:5.6cqw;right:5.6cqw;bottom:6.5cqw;z-index:3}
+.sc-wrap h2{font-size:7cqw;color:var(--cream);max-width:78cqw}
+
+/* contents */
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:3.5cqw;height:100%;align-items:center}
+.toc-row{display:grid;grid-template-columns:2.6cqw 1fr;gap:1.2cqw;align-items:baseline;padding:.45cqw 0;cursor:pointer;transition:.3s}
+.toc-row:hover{transform:translateX(.5cqw)}
+.toc-row .num{font-size:1.1cqw;font-weight:600;color:var(--coral2)}
+.toc-row .t{font-size:2.3cqw;font-weight:700;letter-spacing:-.03em;color:var(--cream)}
+.toc-row .s{font-size:1.1cqw;color:var(--muted-d)}
+.toc-cards{display:flex;flex-direction:column;gap:1.3cqw}
+.toc-card{position:relative;border-radius:1.2cqw;overflow:hidden;height:5cqw;cursor:pointer;transition:transform .5s var(--ease)}
+.toc-card:hover{transform:translateY(-.4cqw)}
+.toc-card .lbl{position:absolute;inset:0;padding:1.3cqw 1.6cqw;display:flex;flex-direction:column;justify-content:space-between;z-index:2}
+.toc-card .rng{font-weight:700;font-size:2.6cqw;color:var(--cream);letter-spacing:-.03em;line-height:1}
+.toc-card .ttl{font-size:1.4cqw;font-weight:600;color:var(--cream)}
+
+/* bars / charts */
+.barrow{display:flex;align-items:flex-end;gap:2cqw;height:100%}
+.barcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:1cqw;height:100%}
+.bar{width:78%;border-radius:.7cqw .7cqw 0 0;background:var(--ink);transition:height 1.1s var(--ease);height:0}
+.bar.alt{background:var(--coral)} .bar.faint{background:var(--cream2)}
+.barval{font-weight:700;font-size:2cqw;letter-spacing:-.03em} .baryr{font-size:1.05cqw;color:var(--muted-l)}
+.viz{width:100%;margin-top:1.4cqw;display:block;overflow:visible}
+.viz path.draw{stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600);transition:stroke-dashoffset 1.6s var(--ease) .2s}
+.is-active .viz path.draw{stroke-dashoffset:0}
+.viz rect.grow{transform:scaleY(0);transform-origin:bottom;transition:transform 1s var(--ease)}
+.is-active .viz rect.grow{transform:scaleY(1)}
+.viz rect.grow:nth-child(2){transition-delay:.12s}.viz rect.grow:nth-child(3){transition-delay:.24s}.viz rect.grow:nth-child(4){transition-delay:.36s}.viz rect.grow:nth-child(5){transition-delay:.48s}
+.metric{display:flex;align-items:center;gap:1.2cqw;font-size:1.15cqw;font-weight:500;margin-top:.9cqw}
+.metric .ml{width:8cqw;color:var(--muted-l)} .card.ink .metric .ml{color:rgba(240,238,230,.6)}
+.metric .track{flex:1;height:.65cqw;background:rgba(25,21,15,.12);border-radius:99px;overflow:hidden}
+.card.ink .metric .track{background:rgba(240,238,230,.14)}
+.metric .track i{display:block;height:100%;background:var(--coral);border-radius:99px;width:0;transition:width 1.1s var(--ease) .3s}
+.card.ink .metric .track i{background:var(--coral2)}
+.is-active .metric .track i{width:var(--w)}
+.chip{display:inline-block;border:1px solid var(--line-l);border-radius:99px;padding:.55cqw 1.2cqw;font-size:1.15cqw;font-weight:500;margin:.35cqw .35cqw 0 0}
+.card.coral .chip{border-color:rgba(240,238,230,.42);color:var(--cream)}
+.logowall{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1cqw}
+.logo{border:1px solid var(--line-l);border-radius:1cqw;display:flex;align-items:center;justify-content:center;gap:1cqw;height:7cqw;background:rgba(25,21,15,.02);transition:.4s}
+.logo img{height:2.4cqw;width:2.4cqw;object-fit:contain;opacity:.82}
+.logo span{font-weight:600;font-size:1.5cqw;letter-spacing:-.02em;color:var(--ink)}
+.logo:hover{transform:translateY(-.4cqw);background:#fff;box-shadow:0 1.2cqw 2.4cqw -1.2cqw rgba(0,0,0,.22)}
+.brand{display:flex;align-items:center;gap:1cqw}
+.brand img{height:2.7cqw;object-fit:contain}
+
+/* UI */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--coral);z-index:60;width:0;transition:width .5s var(--ease)}
+.counter{position:fixed;bottom:2.2vh;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:14px;font-size:13px;font-weight:600;color:#fff;background:rgba(20,18,14,.6);backdrop-filter:blur(14px);padding:9px 18px;border-radius:99px;border:1px solid rgba(255,255,255,.12)}
+.counter .nav-b{cursor:pointer;opacity:.65;font-size:15px;user-select:none}.counter .nav-b:hover{opacity:1}
+.counter .secname{opacity:.6;font-weight:500;max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.counter .c-cur{color:var(--coral2)}
+.dots{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:6px}
+.dots .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.3s}
+.dots .dot.act{background:var(--coral);transform:scale(1.5)}
+.hint{position:fixed;bottom:2.2vh;right:18px;z-index:60;font-size:12px;color:rgba(255,255,255,.5);background:rgba(20,18,14,.5);backdrop-filter:blur(10px);padding:8px 13px;border-radius:99px;border:1px solid rgba(255,255,255,.1)}
+.hint b{color:#fff}
+.overview{position:fixed;inset:0;z-index:80;background:rgba(8,7,5,.9);backdrop-filter:blur(20px);display:none;padding:4vh 4vw;overflow-y:auto}
+.overview.open{display:block;animation:ovin .4s var(--ease)}
+@keyframes ovin{from{opacity:0}to{opacity:1}}
+.ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.ov-cell{aspect-ratio:16/9;border-radius:10px;border:1px solid rgba(255,255,255,.12);cursor:pointer;position:relative;overflow:hidden;background:#1a1813;color:#fff;transition:.3s}
+.ov-cell:hover{transform:translateY(-4px);border-color:var(--coral)}
+.ov-cell .ov-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.55}
+.ov-cell .ov-t{position:absolute;inset:0;padding:10px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.65))}
+.ov-cell .n{font-size:11px;font-weight:700;color:var(--coral2)} .ov-cell .t{font-size:13px;font-weight:600;line-height:1.15}
+.ov-title{color:#fff;font-size:24px;font-weight:700;margin-bottom:20px;display:flex;justify-content:space-between;align-items:baseline}
+.ov-title span{font-size:13px;font-weight:500;color:rgba(255,255,255,.5)}
+#splash{position:fixed;inset:0;z-index:100;background:#0E0E0C;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;transition:opacity .8s var(--ease)}
+#splash.hide{opacity:0;pointer-events:none}
+#splash .lg{font-weight:700;font-size:clamp(40px,7vw,92px);letter-spacing:-.04em;color:var(--cream)}
+#splash .lg .dt{color:var(--coral)}
+#splash .ln{width:0;height:2px;background:var(--coral);transition:width 1.2s var(--ease)}
+#splash.go .ln{width:min(420px,60vw)}
+#splash .sb{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:rgba(240,238,230,.5)}
+@media(max-width:640px){.hint,.dots{display:none}}
+</style>
+</head>
+<body class="notranslate">
+
+<div class="progress" id="progress"></div>
+<div id="splash"><div class="lg">Anthropic<span class="dt">.</span></div><div class="ln"></div><div class="sb">Investor Presentation · 2026</div></div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 COVER -->
+  <section class="slide" data-theme="dark" data-title="Cover" data-section="Intro" data-thumb="cover_hero">
+    <div class="stage">
+      <div class="cover-grid">
+        <div class="cover-l">
+          <div class="wm r">Anthropic<span class="dot"></span></div>
+          <div>
+            <div class="eyebrow r" style="--d:.05s">Investor Presentation</div>
+            <h1 class="disp r" style="--d:.12s;font-size:6.4cqw;margin-top:1.4cqw">Investor<br>Presentation</h1>
+          </div>
+          <div class="r" style="--d:.2s">
+            <div style="font-size:1.5cqw;font-weight:600">June 2026</div>
+            <div class="kicker" style="margin-top:.3cqw">Anthropic PBC · The frontier of safe, useful AI</div>
+            <div style="height:1px;background:var(--line-d);margin:1.4cqw 0 1.2cqw"></div>
+            <div style="display:flex;align-items:baseline;gap:1.2cqw">
+              <div style="font-weight:700;font-size:4cqw;letter-spacing:-.04em" data-count="965" data-prefix="$" data-suffix="B">$0B</div>
+              <div class="kicker">post-money valuation<br>Series H · 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="cover-r">
+          <div class="bleed parallax" style="background-image:url('img/cover_hero.jpg')"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 CONTENTS -->
+  <section class="slide" data-theme="ink" data-title="Contents" data-section="Intro" data-thumb="sec_ecosystem">
+    <div class="stage">
+      <div class="pad">
+        <div class="toc">
+          <div>
+            <h2 class="sec r" style="font-size:4.6cqw;color:var(--cream)">Contents</h2>
+            <div style="margin-top:2.2cqw;display:flex;flex-direction:column;gap:.5cqw">
+              <div class="toc-row r" style="--d:.04s" data-go="2"><span class="num">01</span><div><div class="t">The Opportunity</div><div class="s">Market · Why AI now</div></div></div>
+              <div class="toc-row r" style="--d:.08s" data-go="4"><span class="num">02</span><div><div class="t">The Company</div><div class="s">Overview · Mission · Leadership</div></div></div>
+              <div class="toc-row r" style="--d:.12s" data-go="7"><span class="num">03</span><div><div class="t">The Product</div><div class="s">Claude ecosystem · Portfolio</div></div></div>
+              <div class="toc-row r" style="--d:.16s" data-go="10"><span class="num">04</span><div><div class="t">Traction</div><div class="s">Revenue · Funding · Customers</div></div></div>
+              <div class="toc-row r" style="--d:.2s" data-go="13"><span class="num">05</span><div><div class="t">The Moat</div><div class="s">Position · Safety · Compute</div></div></div>
+              <div class="toc-row r" style="--d:.24s" data-go="22"><span class="num">06</span><div><div class="t">The Ask</div><div class="s">Why invest · Highlights</div></div></div>
+            </div>
+          </div>
+          <div class="toc-cards">
+            <div class="toc-card r" style="--d:.1s" data-go="9"><div class="bleed" style="background-image:url('img/sec_market.jpg')"></div><div class="scrim b"></div><div class="lbl"><div class="rng">10–13</div><div class="ttl">Explosive Traction</div></div></div>
+            <div class="toc-card r" style="--d:.18s" data-go="14"><div class="bleed" style="background-image:url('img/sec_safety.jpg')"></div><div class="scrim b"></div><div class="lbl"><div class="rng">15</div><div class="ttl">AI Safety Leadership</div></div></div>
+            <div class="toc-card r" style="--d:.26s" data-go="22"><div class="bleed" style="background-image:url('img/sec_invest.jpg')"></div><div class="scrim b"></div><div class="lbl"><div class="rng">23</div><div class="ttl">Why Invest</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 MARKET -->
+  <section class="slide" data-theme="light" data-title="AI Market Opportunity" data-section="The Opportunity" data-thumb="sec_market">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">3.0</span><span class="regsec"><b>Section</b> &nbsp;The Opportunity</span>
+      <div class="pad">
+        <h2 class="sec r" style="font-size:4.4cqw;max-width:36cqw">A market<br>measured<br>in trillions.</h2>
+        <div style="position:absolute;left:5.6cqw;bottom:7cqw">
+          <div class="r" style="--d:.15s;font-size:13cqw;font-weight:700;letter-spacing:-.05em;line-height:.85"><span data-count="1.8" data-prefix="$" data-suffix="T" data-dec="1">$0T</span></div>
+          <div class="body r" style="--d:.25s;margin-top:.6cqw">Global AI market by 2030, up from $244B in 2025 — a ~36% CAGR.</div>
+        </div>
+        <div class="imgpanel r" style="--d:.2s;right:5.6cqw;top:13.5cqw;bottom:7cqw;width:30cqw">
+          <div class="bleed" style="background-image:url('img/sec_market.jpg')"></div>
+          <div class="scrim b"></div>
+          <div style="position:absolute;left:1.8cqw;bottom:1.8cqw;z-index:2;color:var(--cream)">
+            <div style="font-weight:700;font-size:2.8cqw">$1.3T</div>
+            <div style="font-size:1.1cqw;color:rgba(240,238,230,.85);max-width:24cqw">Gen-AI value created within a decade (Bloomberg)</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 4 WHY NOW -->
+  <section class="slide" data-theme="dark" data-title="Why AI Now" data-section="The Opportunity" data-thumb="sec_whynow">
+    <div class="stage">
+      <div class="bleed" style="background-image:url('img/sec_whynow.jpg')"></div>
+      <div class="scrim l"></div>
+      <span class="reg"></span><span class="regnum">4.0</span><span class="regsec"><b>Section</b> &nbsp;The Opportunity</span>
+      <div class="pad">
+        <div class="eyebrow r">Why AI Now</div>
+        <h2 class="sec r" style="--d:.06s;font-size:5cqw;color:var(--cream);margin-top:1cqw">Why now.</h2>
+        <div style="position:absolute;left:5.6cqw;bottom:7cqw;width:42cqw;display:flex;flex-direction:column;gap:1.2cqw">
+          <div class="card glass r" style="--d:.14s;padding:1.6cqw 2cqw;display:flex;align-items:baseline;gap:1.6cqw"><div class="stat-num" style="font-size:3.2cqw;color:var(--cream)">10×</div><div class="stat-lab" style="margin-top:0">Frontier capability gains per year — agents crossing the usefulness threshold.</div></div>
+          <div class="card glass r" style="--d:.2s;padding:1.6cqw 2cqw;display:flex;align-items:baseline;gap:1.6cqw"><div class="stat-num" style="font-size:3.2cqw;color:var(--cream)">↓ cost</div><div class="stat-lab" style="margin-top:0">Inference cost collapsing order-of-magnitude per year.</div></div>
+          <div class="card coral r" style="--d:.26s;padding:1.6cqw 2cqw;display:flex;align-items:baseline;gap:1.6cqw"><div class="stat-num" style="font-size:3.2cqw">34%</div><div class="stat-lab">of US businesses now pay for AI — the enterprise inflection point.</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 5 OVERVIEW -->
+  <section class="slide" data-theme="light" data-title="Anthropic Overview" data-section="The Company" data-thumb="obj_foundation">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">5.0</span><span class="regsec"><b>Section</b> &nbsp;The Company</span>
+      <div class="pad">
+        <div class="eyebrow r">Anthropic Overview</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw;max-width:40cqw">The most valuable AI company in the world.</h2>
+        <div class="grid4 colflow" style="top:16cqw;bottom:6.8cqw">
+          <div class="card r" style="--d:.1s"><div class="stat-num" style="font-size:4cqw" data-count="2021" data-plain="1">2021</div><div class="stat-lab">Founded · Public-Benefit Corporation</div></div>
+          <div class="card r" style="--d:.16s"><div class="stat-num" style="font-size:4cqw"><span data-count="965" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Valuation · surpassing OpenAI</div></div>
+          <div class="card coral r" style="--d:.22s"><div class="stat-num" style="font-size:4cqw"><span data-count="45" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Revenue run-rate · May 2026</div></div>
+          <div class="card ink r" style="--d:.28s"><div class="stat-num" style="font-size:4cqw"><span data-count="1000" data-suffix="+">0</span></div><div class="stat-lab">Customers spending $1M+ / year</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 6 MISSION (section cover) -->
+  <section class="slide" data-theme="ink" data-title="Mission & Vision" data-section="The Company" data-thumb="sec_mission">
+    <div class="stage">
+      <div class="bleed parallax" style="background-image:url('img/sec_mission.jpg')"></div>
+      <div class="scrim b"></div>
+      <span class="reg" style="opacity:.5"></span><span class="regnum">6.0</span><span class="regsec"><b>Section</b> &nbsp;Mission & Vision</span>
+      <div class="sc-wrap">
+        <div class="eyebrow r">Mission</div>
+        <h2 class="r" style="--d:.1s;font-size:4.4cqw;font-weight:700;letter-spacing:-.04em;line-height:1.0;color:var(--cream);max-width:64cqw;margin-top:1cqw">Ensure the world safely makes the transition through transformative&nbsp;AI.</h2>
+        <div class="r" style="--d:.24s;margin-top:1.6cqw;font-size:1.6cqw;color:var(--muted-d);max-width:56cqw;line-height:1.4">We build frontier systems — and the science to keep them safe — so AI&rsquo;s benefits reach everyone.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 FOUNDERS -->
+  <section class="slide" data-theme="light" data-title="Founders & Leadership" data-section="The Company" data-thumb="obj_foundation">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">7.0</span><span class="regsec"><b>Section</b> &nbsp;Leadership</span>
+      <div class="pad">
+        <div class="eyebrow r">Founders & Leadership</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.2cqw;margin-top:1cqw;max-width:58cqw">Founded by the team that defined modern AI&nbsp;safety.</h2>
+        <div class="colflow" style="top:16cqw;bottom:6.8cqw">
+          <div class="grid3" style="gap:1.5cqw">
+            <div class="card r" style="--d:.08s;display:flex;gap:1.4cqw;align-items:center;padding:1.7cqw"><div class="av" style="width:5cqw;height:5cqw;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.8cqw;color:var(--cream);background:var(--coral)">DA</div><div><div style="font-weight:700;font-size:1.7cqw">Dario Amodei</div><div class="kicker">Co-founder & CEO · ex-OpenAI VP</div></div></div>
+            <div class="card r" style="--d:.14s;display:flex;gap:1.4cqw;align-items:center;padding:1.7cqw"><div class="av" style="width:5cqw;height:5cqw;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.8cqw;color:var(--cream);background:var(--ink)">DA</div><div><div style="font-weight:700;font-size:1.7cqw">Daniela Amodei</div><div class="kicker">Co-founder & President · ex-OpenAI</div></div></div>
+            <div class="card r" style="--d:.2s;display:flex;gap:1.4cqw;align-items:center;padding:1.7cqw"><div class="av" style="width:5cqw;height:5cqw;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.8cqw;color:var(--cream);background:var(--rust)">JK</div><div><div style="font-weight:700;font-size:1.7cqw">Jared Kaplan</div><div class="kicker">Co-founder & Chief Science Officer</div></div></div>
+          </div>
+          <div class="grid2" style="margin-top:1.5cqw;gap:1.5cqw">
+            <div class="card r" style="--d:.26s;padding:1.8cqw"><div style="font-weight:600;font-size:1.5cqw">Tom Brown · Sam McCandlish · Jack Clark · Chris Olah</div><div class="kicker" style="margin-top:.5cqw">Co-founders — authors of GPT-3, scaling laws & mechanistic interpretability.</div></div>
+            <div class="card coral r" style="--d:.32s;padding:1.8cqw"><div class="stat-num" style="font-size:3cqw">~$8B</div><div class="stat-lab">Net worth per co-founder after the Series H round.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 8 ECOSYSTEM -->
+  <section class="slide" data-theme="ink" data-title="Claude Ecosystem" data-section="The Product" data-thumb="sec_ecosystem">
+    <div class="stage">
+      <div class="bleed" style="background-image:url('img/sec_ecosystem.jpg');opacity:.5"></div>
+      <div class="scrim full"></div>
+      <span class="reg"></span><span class="regnum">8.0</span><span class="regsec"><b>Section</b> &nbsp;The Product</span>
+      <div class="pad">
+        <div class="eyebrow r">Claude Ecosystem</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.4cqw;color:var(--cream);margin-top:1cqw;max-width:42cqw">One model family. Everywhere work happens.</h2>
+        <div class="colflow" style="top:14cqw;bottom:6.8cqw;display:flex;flex-direction:column;justify-content:center;gap:2cqw">
+          <div class="r" style="--d:.1s;display:flex;align-items:center;gap:2cqw"><div style="font-weight:700;font-size:3cqw;color:var(--coral2)">Claude</div><div style="flex:1;height:1px;background:var(--line-d)"></div><div class="kicker" style="font-size:1.2cqw">Opus 4.8 · Sonnet 4.6 · Haiku 4.5</div></div>
+          <div class="grid4" style="gap:1.4cqw">
+            <div class="card glass r" style="--d:.16s;padding:1.6cqw"><div style="font-weight:700;font-size:1.8cqw;color:var(--cream)">Claude apps</div><div class="stat-lab" style="font-size:1.1cqw">Web, desktop & mobile.</div></div>
+            <div class="card glass r" style="--d:.2s;padding:1.6cqw"><div style="font-weight:700;font-size:1.8cqw;color:var(--cream)">Developer API</div><div class="stat-lab" style="font-size:1.1cqw">Build Claude into any product.</div></div>
+            <div class="card glass r" style="--d:.24s;padding:1.6cqw"><div style="font-weight:700;font-size:1.8cqw;color:var(--cream)">Claude Code</div><div class="stat-lab" style="font-size:1.1cqw">Agentic coding in terminal & IDE.</div></div>
+            <div class="card glass r" style="--d:.28s;padding:1.6cqw"><div style="font-weight:700;font-size:1.8cqw;color:var(--cream)">Cloud</div><div class="stat-lab" style="font-size:1.1cqw">AWS Bedrock · Google Vertex AI.</div></div>
+          </div>
+          <div class="card coral r" style="--d:.34s;padding:1.5cqw 2cqw;display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700;font-size:1.8cqw">MCP — Model Context Protocol</div><div class="stat-lab" style="margin-top:0">The open standard connecting agents to tools & data.</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 9 PORTFOLIO -->
+  <section class="slide" data-theme="light" data-title="Product Portfolio" data-section="The Product" data-thumb="obj_tiers">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">9.0</span><span class="regsec"><b>Section</b> &nbsp;The Product</span>
+      <div class="pad">
+        <div class="eyebrow r">Product Portfolio</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Three tiers. One frontier.</h2>
+        <div class="grid3 colflow" style="top:15cqw;bottom:15.5cqw">
+          <div class="card ink r" style="--d:.1s"><div style="font-weight:600;font-size:2.4cqw;color:var(--cream)">Opus 4.8</div><div class="stat-lab" style="margin-top:.7cqw">Maximum capability. Long-horizon agentic coding & reasoning. 1M-token context.</div>
+            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:98%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:52%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:42%"></i></div></div></div>
+          <div class="card r" style="--d:.18s"><div style="font-weight:600;font-size:2.4cqw">Sonnet 4.6</div><div class="stat-lab" style="margin-top:.7cqw">The balanced workhorse — speed, cost & quality for production at scale.</div>
+            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:82%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:82%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:78%"></i></div></div></div>
+          <div class="card r" style="--d:.26s"><div style="font-weight:600;font-size:2.4cqw">Haiku 4.5</div><div class="stat-lab" style="margin-top:.7cqw">Low-latency, low-cost. Real-time and high-volume workloads.</div>
+            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:60%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:98%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:95%"></i></div></div></div>
+        </div>
+        <div style="position:absolute;left:5.6cqw;right:5.6cqw;bottom:6.5cqw" class="grid2">
+          <div class="card coral r" style="--d:.32s;padding:1.5cqw 2cqw"><div style="font-weight:700;font-size:1.8cqw">Claude Code</div><div class="stat-lab" style="font-size:1.2cqw;margin-top:.3cqw">Agentic coding — $1B ARR within 6 months.</div></div>
+          <div class="card r" style="--d:.38s;padding:1.5cqw 2cqw"><div style="font-weight:700;font-size:1.8cqw">Claude Mythos · Glasswing</div><div class="stat-lab" style="font-size:1.2cqw;margin-top:.3cqw">Defensive-cybersecurity research preview.</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 10 ENTERPRISE ADOPTION -->
+  <section class="slide" data-theme="light" data-title="Enterprise Adoption" data-section="Traction" data-thumb="sec_highlights">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">10.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="pad">
+        <div class="eyebrow r">Enterprise Adoption</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw;max-width:42cqw">For the first time, #1 in US business&nbsp;AI.</h2>
+        <div style="position:absolute;left:5.6cqw;bottom:7cqw;width:34cqw">
+          <div class="barrow" style="height:22cqw">
+            <div class="barcol"><div class="barval r" style="--d:.3s">34.4%</div><div class="bar alt" data-h="100"></div><div class="baryr">Anthropic</div></div>
+            <div class="barcol"><div class="barval r" style="--d:.36s">32.3%</div><div class="bar faint" data-h="94"></div><div class="baryr">OpenAI</div></div>
+          </div>
+        </div>
+        <div class="imgpanel r" style="--d:.18s;right:5.6cqw;top:13.5cqw;bottom:7cqw;width:26cqw">
+          <div class="bleed" style="background-image:url('img/sec_highlights.jpg')"></div><div class="scrim b"></div>
+          <div style="position:absolute;left:1.6cqw;right:1.6cqw;bottom:1.6cqw;z-index:2;color:var(--cream)"><div style="font-weight:700;font-size:2.6cqw">4×</div><div style="font-size:1.1cqw;color:rgba(240,238,230,.85)">business adoption growth in the past year — vs OpenAI +0.3%.</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Share of US businesses paying for AI · public reporting</span></div>
+    </div>
+  </section>
+
+  <!-- 11 REVENUE -->
+  <section class="slide" data-theme="ink" data-title="Revenue Growth" data-section="Traction" data-thumb="sec_growth">
+    <div class="stage">
+      <div class="bleed" style="background-image:url('img/sec_growth.jpg');opacity:.32"></div><div class="scrim full"></div>
+      <span class="reg"></span><span class="regnum">11.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="pad">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="eyebrow r">Revenue Growth</div><h2 class="sec r" style="--d:.06s;font-size:3.4cqw;color:var(--cream);margin-top:1cqw">The steepest curve in software.</h2></div>
+          <div class="r" style="--d:.2s;text-align:right"><div style="font-weight:700;font-size:4.6cqw;color:var(--coral2)">~80×</div><div class="kicker">run-rate, in 18 months</div></div>
+        </div>
+        <div style="position:absolute;left:5.6cqw;right:5.6cqw;top:15cqw;bottom:6.3cqw"><svg class="chart" id="revChart" viewBox="0 0 1000 360" preserveAspectRatio="none" style="width:100%;height:100%;overflow:visible"></svg></div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Annualised run-rate revenue, $B · public reporting</span></div>
+    </div>
+  </section>
+
+  <!-- 12 FUNDING -->
+  <section class="slide" data-theme="light" data-title="Funding History" data-section="Traction" data-thumb="sec_highlights">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">12.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="pad">
+        <div class="eyebrow r">Funding History</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Valuation, compounding.</h2>
+        <div style="position:absolute;left:5.6cqw;right:30cqw;top:15cqw;bottom:7cqw">
+          <div class="barrow">
+            <div class="barcol"><div class="barval r" style="--d:.2s">$62B</div><div class="bar faint" data-h="6"></div><div class="baryr">Mar &rsquo;25</div></div>
+            <div class="barcol"><div class="barval r" style="--d:.26s">$183B</div><div class="bar faint" data-h="19"></div><div class="baryr">Sep &rsquo;25</div></div>
+            <div class="barcol"><div class="barval r" style="--d:.32s">$380B</div><div class="bar" data-h="39"></div><div class="baryr">Series G</div></div>
+            <div class="barcol"><div class="barval r" style="--d:.38s">$965B</div><div class="bar alt" data-h="100"></div><div class="baryr">Series H</div></div>
+          </div>
+        </div>
+        <div style="position:absolute;right:5.6cqw;top:15cqw;width:22cqw;display:flex;flex-direction:column;gap:1.3cqw">
+          <div class="card coral r" style="--d:.24s"><div class="stat-num" style="font-size:3.4cqw">$65B</div><div class="stat-lab">Series H — likely the final private round before IPO.</div></div>
+          <div class="card r" style="--d:.3s"><div style="font-weight:600;font-size:1.35cqw;line-height:1.45">Sequoia · Altimeter · Coatue · Dragoneer · Google · Amazon · Fidelity · Baillie Gifford</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Post-money valuation · public reporting</span></div>
+    </div>
+  </section>
+
+  <!-- 13 PARTNERSHIPS -->
+  <section class="slide" data-theme="light" data-title="Strategic Partnerships" data-section="Traction" data-thumb="sec_compute">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">13.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="pad">
+        <div class="eyebrow r">Strategic Partnerships</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.4cqw;margin-top:1cqw">Backed by the largest infrastructure deals in&nbsp;AI.</h2>
+        <div class="grid3 colflow" style="top:15.5cqw;bottom:6.8cqw">
+          <div class="card r" style="--d:.1s;display:flex;flex-direction:column"><div class="brand"><img src="logos/amazon.png" alt="Amazon"></div><div class="kicker" style="margin-top:1cqw">Primary cloud & compute partner</div><div class="stat-num" style="font-size:4cqw;margin-top:auto">$25B</div><div class="stat-lab" style="margin-top:.3cqw">Direct investment</div><div style="height:1px;background:var(--line-l);margin:1.2cqw 0"></div><div class="kicker" style="font-size:1.15cqw;line-height:1.5">$100B+ committed to AWS over 10 years · 5 GW Trainium</div></div>
+          <div class="card coral r" style="--d:.18s;display:flex;flex-direction:column"><div class="brand"><img src="logos/google.png" alt="Google" style="filter:brightness(0) invert(1)"><span style="font-weight:700;font-size:1.9cqw;color:var(--cream)">Google</span></div><div class="kicker" style="margin-top:1cqw;color:rgba(240,238,230,.82)">Cloud & TPU partner</div><div class="stat-num" style="font-size:4cqw;margin-top:auto">$40B</div><div class="stat-lab" style="margin-top:.3cqw">Investment + cloud</div><div style="height:1px;background:rgba(240,238,230,.25);margin:1.2cqw 0"></div><div class="kicker" style="font-size:1.15cqw;line-height:1.5;color:rgba(240,238,230,.82)">Up to 1M Ironwood TPUs · multi-GW from 2027</div></div>
+          <div class="card r" style="--d:.26s;display:flex;flex-direction:column"><div class="brand"><img src="logos/nvidia.png" alt="NVIDIA"><span style="font-weight:700;font-size:1.6cqw">NVIDIA · Broadcom</span></div><div class="kicker" style="margin-top:1cqw">Silicon & networking partners</div><div class="stat-num" style="font-size:4cqw;margin-top:auto">3.5 GW</div><div class="stat-lab" style="margin-top:.3cqw">Next-gen TPU capacity</div><div style="height:1px;background:var(--line-l);margin:1.2cqw 0"></div><div class="kicker" style="font-size:1.15cqw;line-height:1.5">Multi-chip strategy — best silicon per workload</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Announced 2026 · public reporting</span></div>
+    </div>
+  </section>
+
+  <!-- 14 MARKET POSITION -->
+  <section class="slide" data-theme="ink" data-title="Market Position" data-section="The Moat" data-thumb="sec_highlights">
+    <div class="stage">
+      <div class="bleed" style="background-image:url('img/sec_highlights.jpg');opacity:.3"></div><div class="scrim full"></div>
+      <span class="reg"></span><span class="regnum">14.0</span><span class="regsec"><b>Section</b> &nbsp;The Moat</span>
+      <div class="pad">
+        <div class="eyebrow r">Market Position</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.4cqw;color:var(--cream);margin-top:1cqw">Ahead of OpenAI. Independent of Google &amp;&nbsp;Meta.</h2>
+        <div style="position:absolute;left:5.6cqw;right:5.6cqw;top:16cqw;bottom:7cqw;display:flex;flex-direction:column;gap:2.2cqw">
+          <div class="r" style="--d:.16s"><div style="display:flex;justify-content:space-between;font-size:1.4cqw;font-weight:600;color:var(--cream);margin-bottom:.6cqw"><span>Anthropic</span><span>$965B</span></div><div style="height:3cqw;background:rgba(240,238,230,.1);border-radius:99px;overflow:hidden"><div class="hbar" data-w="100" style="height:100%;width:0;background:var(--coral);border-radius:99px;transition:width 1.1s var(--ease)"></div></div></div>
+          <div class="r" style="--d:.24s"><div style="display:flex;justify-content:space-between;font-size:1.4cqw;font-weight:600;color:var(--cream);margin-bottom:.6cqw"><span>OpenAI</span><span>$852B</span></div><div style="height:3cqw;background:rgba(240,238,230,.1);border-radius:99px;overflow:hidden"><div class="hbar" data-w="88" style="height:100%;width:0;background:var(--cream);border-radius:99px;transition:width 1.1s var(--ease)"></div></div></div>
+          <div class="r" style="--d:.32s"><div style="display:flex;justify-content:space-between;font-size:1.4cqw;font-weight:600;color:var(--cream);margin-bottom:.6cqw"><span>Business-AI adoption (US)</span><span>34.4% vs 32.3%</span></div><div style="height:3cqw;background:rgba(240,238,230,.1);border-radius:99px;overflow:hidden"><div class="hbar" data-w="100" style="height:100%;width:0;background:var(--coral2);border-radius:99px;transition:width 1.1s var(--ease)"></div></div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Valuation & US business adoption · public reporting</span></div>
+    </div>
+  </section>
+
+  <!-- 15 SAFETY (section cover) -->
+  <section class="slide" data-theme="ink" data-title="AI Safety Leadership" data-section="The Moat" data-thumb="sec_safety">
+    <div class="stage">
+      <div class="bleed parallax" style="background-image:url('img/sec_safety.jpg')"></div><div class="scrim b"></div>
+      <span class="reg" style="opacity:.5"></span><span class="regnum">15.0</span><span class="regsec"><b>Section</b> &nbsp;The Moat</span>
+      <div class="sc-wrap">
+        <div class="eyebrow r">AI Safety Leadership</div>
+        <h2 class="r" style="--d:.1s;font-size:6cqw;font-weight:700;letter-spacing:-.04em;color:var(--cream);margin-top:1cqw">Safety is the&nbsp;moat.</h2>
+        <div class="grid3 r" style="--d:.24s;margin-top:2cqw;max-width:74cqw;gap:1.6cqw">
+          <div><div style="font-weight:700;font-size:1.9cqw;color:var(--coral2)">Constitutional AI</div><div style="font-size:1.2cqw;color:var(--muted-d);margin-top:.5cqw;line-height:1.35">Models aligned to explicit principles, not opaque preference data.</div></div>
+          <div><div style="font-weight:700;font-size:1.9cqw;color:var(--coral2)">Responsible Scaling</div><div style="font-size:1.2cqw;color:var(--muted-d);margin-top:.5cqw;line-height:1.35">ASL safety levels gate capability behind tested safeguards.</div></div>
+          <div><div style="font-weight:700;font-size:1.9cqw;color:var(--coral2)">Interpretability</div><div style="font-size:1.2cqw;color:var(--muted-d);margin-top:.5cqw;line-height:1.35">World-leading research reading the inside of the model.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 TECH -->
+  <section class="slide" data-theme="light" data-title="Technology & Research" data-section="The Moat" data-thumb="obj_research">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">16.0</span><span class="regsec"><b>Section</b> &nbsp;The Moat</span>
+      <div class="pad">
+        <div class="eyebrow r">Technology & Research</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">A research lab that ships.</h2>
+        <div class="grid4 colflow" style="top:15.5cqw;bottom:6.8cqw">
+          <div class="card r" style="--d:.1s"><div class="stat-num" style="font-size:3.4cqw">1M</div><div class="stat-lab">token context window on the Opus flagships.</div></div>
+          <div class="card coral r" style="--d:.16s"><div class="stat-num" style="font-size:3.4cqw">4×</div><div class="stat-lab">fewer unflagged code flaws — Opus 4.8 vs 4.7.</div></div>
+          <div class="card r" style="--d:.22s"><div class="stat-num" style="font-size:3.4cqw">#1</div><div class="stat-lab">on agentic-coding & reasoning benchmarks.</div></div>
+          <div class="imgpanel r" style="--d:.28s;position:relative;border-radius:1.5cqw"><div class="bleed" style="background-image:url('img/obj_research.jpg')"></div><div class="scrim b"></div><div style="position:absolute;left:1.4cqw;top:1.2cqw;z-index:2;font-weight:700;font-size:1.8cqw;color:var(--cream)">Interpretability</div><div style="position:absolute;left:1.4cqw;right:1.4cqw;bottom:1.2cqw;z-index:2;font-size:1.1cqw;color:rgba(240,238,230,.88)">Field-defining mechanistic-interpretability research.</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 17 COMPUTE -->
+  <section class="slide" data-theme="light" data-title="Infrastructure & Scaling" data-section="The Moat" data-thumb="sec_compute">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">17.0</span><span class="regsec"><b>Section</b> &nbsp;The Moat</span>
+      <div class="pad">
+        <div class="imgpanel r" style="--d:.1s;left:5.6cqw;top:13.5cqw;bottom:7cqw;width:42cqw">
+          <div class="bleed parallax" style="background-image:url('img/sec_compute.jpg')"></div><div class="scrim b"></div>
+          <div style="position:absolute;left:2cqw;top:2cqw;z-index:2"><div style="font-weight:700;font-size:2.6cqw;color:var(--cream);letter-spacing:-.03em;line-height:1">Compute at<br>planetary scale.</div></div>
+          <div style="position:absolute;left:2cqw;bottom:2cqw;z-index:2"><div style="font-weight:700;font-size:6cqw;color:var(--cream);letter-spacing:-.05em">5 GW</div><div style="font-size:1.2cqw;color:rgba(240,238,230,.88);max-width:34cqw">of Trainium compute with Amazon — ~1 GW online by end of 2026.</div></div>
+        </div>
+        <div style="position:absolute;right:5.6cqw;top:13.5cqw;width:30cqw;display:flex;flex-direction:column;gap:1.3cqw">
+          <div class="card r" style="--d:.2s"><div style="font-weight:600;font-size:1.6cqw">Multi-cloud, multi-chip</div><div class="stat-lab" style="margin-top:.5cqw">AWS Trainium · Google TPU · NVIDIA GPU — every workload matched to the best silicon.</div></div>
+          <div class="grid2" style="gap:1.3cqw">
+            <div class="card coral r" style="--d:.28s"><div class="stat-num" style="font-size:3cqw">1M</div><div class="stat-lab">Ironwood TPUs committed.</div></div>
+            <div class="card ink r" style="--d:.34s"><div class="stat-num" style="font-size:3cqw">$100B+</div><div class="stat-lab">to AWS over 10 years.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 18 CUSTOMER GROWTH -->
+  <section class="slide" data-theme="ink" data-title="Customer Growth" data-section="Traction" data-thumb="sec_growth">
+    <div class="stage">
+      <div class="bleed" style="background-image:url('img/sec_growth.jpg');opacity:.34"></div><div class="scrim full"></div>
+      <span class="reg"></span><span class="regnum">18.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="pad">
+        <div class="eyebrow r">Customer Growth</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;color:var(--cream);margin-top:1cqw">Land. Expand. Compound.</h2>
+        <div class="grid3 colflow" style="top:15.5cqw;bottom:6.8cqw">
+          <div class="card glass r" style="--d:.1s"><div class="stat-num" style="font-size:3.8cqw;color:var(--cream)"><span data-count="1000" data-suffix="+">0</span></div><div class="stat-lab">customers at $1M+/yr — doubled from 500 in two months.</div></div>
+          <div class="card coral r" style="--d:.18s"><div class="stat-num" style="font-size:3.8cqw">$1B</div><div class="stat-lab">Claude Code ARR within 6 months of launch.</div></div>
+          <div class="card glass r" style="--d:.26s"><div class="stat-num" style="font-size:3.8cqw;color:var(--cream)">&gt;50%</div><div class="stat-lab">of Claude Code revenue is now enterprise.</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 19 CUSTOMERS -->
+  <section class="slide" data-theme="light" data-title="Enterprise Customers" data-section="Traction" data-thumb="tex_fabric">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">19.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="pad">
+        <div class="eyebrow r">Enterprise Customers</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Trusted where the stakes are highest.</h2>
+        <div class="logowall colflow" style="top:15.5cqw;bottom:6.8cqw" id="logos"></div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Selected customers · public reporting</span></div>
+    </div>
+  </section>
+
+  <!-- 20 FINANCIAL -->
+  <section class="slide" data-theme="light" data-title="Financial Performance" data-section="Traction" data-thumb="sec_financial">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">20.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="pad">
+        <div class="eyebrow r">Financial Performance</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Growth — and a line of sight to profit.</h2>
+        <div class="grid4 colflow" style="top:15cqw;bottom:6.8cqw">
+          <div class="card r" style="--d:.1s"><div class="stat-num" style="font-size:3.4cqw"><span data-count="45" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Revenue run-rate · May 2026</div></div>
+          <div class="card coral r" style="--d:.16s"><div class="stat-num" style="font-size:3.4cqw">130%</div><div class="stat-lab">Projected revenue surge to first operating profit.</div></div>
+          <div class="card r" style="--d:.22s"><div class="stat-num" style="font-size:3.4cqw">4×</div><div class="stat-lab">Less spent than OpenAI to train comparable models.</div></div>
+          <div class="card ink r" style="--d:.28s"><div class="stat-num" style="font-size:2.6cqw;color:var(--cream)">Margins ↑</div><div class="stat-lab">Gross margins expanding as inference costs fall.</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 21 ROADMAP -->
+  <section class="slide" data-theme="ink" data-title="Future Roadmap" data-section="The Ask" data-thumb="sec_roadmap">
+    <div class="stage">
+      <div class="bleed" style="background-image:url('img/sec_roadmap.jpg');opacity:.4"></div><div class="scrim l"></div>
+      <span class="reg"></span><span class="regnum">21.0</span><span class="regsec"><b>Section</b> &nbsp;Roadmap</span>
+      <div class="pad">
+        <div class="eyebrow r">Future Roadmap</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;color:var(--cream);margin-top:1cqw">What&rsquo;s next.</h2>
+        <div class="colflow" style="top:15cqw;bottom:6.8cqw"><div style="display:flex;flex-direction:column;gap:1.3cqw;max-width:56cqw">
+          <div class="r" style="--d:.1s;display:flex;gap:2cqw;align-items:baseline;border-bottom:1px solid var(--line-d);padding-bottom:1.3cqw"><span style="color:var(--coral2);font-weight:700;font-size:1.3cqw;width:8cqw">H2 2026</span><span style="font-weight:600;font-size:1.9cqw;color:var(--cream)">Long-horizon agents — work measured in hours, not turns.</span></div>
+          <div class="r" style="--d:.16s;display:flex;gap:2cqw;align-items:baseline;border-bottom:1px solid var(--line-d);padding-bottom:1.3cqw"><span style="color:var(--coral2);font-weight:700;font-size:1.3cqw;width:8cqw">2026</span><span style="font-weight:600;font-size:1.9cqw;color:var(--cream)">Claude Code & enterprise platform expansion.</span></div>
+          <div class="r" style="--d:.22s;display:flex;gap:2cqw;align-items:baseline;border-bottom:1px solid var(--line-d);padding-bottom:1.3cqw"><span style="color:var(--coral2);font-weight:700;font-size:1.3cqw;width:8cqw">2026</span><span style="font-weight:600;font-size:1.9cqw;color:var(--cream)">Project Glasswing — defensive cybersecurity at the frontier.</span></div>
+          <div class="r" style="--d:.28s;display:flex;gap:2cqw;align-items:baseline"><span style="color:var(--coral2);font-weight:700;font-size:1.3cqw;width:8cqw">Fall 2026</span><span style="font-weight:600;font-size:1.9cqw;color:var(--cream)">IPO — confidential filing submitted.</span></div>
+        </div></div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Forward-looking · public reporting</span></div>
+    </div>
+  </section>
+
+  <!-- 22 GLOBAL -->
+  <section class="slide" data-theme="light" data-title="Global Expansion" data-section="The Ask" data-thumb="sec_global">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">22.0</span><span class="regsec"><b>Section</b> &nbsp;Roadmap</span>
+      <div class="pad">
+        <div class="eyebrow r">Global Expansion</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.4cqw;margin-top:1cqw">From the enterprise to Main Street — worldwide.</h2>
+        <div class="grid3 colflow" style="top:15.5cqw;bottom:6.8cqw">
+          <div class="imgpanel r" style="--d:.1s;position:relative;border-radius:1.5cqw"><div class="bleed" style="background-image:url('img/sec_global.jpg')"></div><div class="scrim b"></div><div style="position:absolute;left:1.4cqw;bottom:1.4cqw;z-index:2"><div style="font-weight:700;font-size:1.8cqw;color:var(--cream)">Every segment</div><div style="font-size:1.1cqw;color:rgba(240,238,230,.85)">Enterprise → Small Business</div></div></div>
+          <div class="card r" style="--d:.18s"><div style="font-weight:600;font-size:1.9cqw">Every region</div><div class="stat-lab" style="margin-top:.5cqw">Local data residency & governance, worldwide.</div><div style="margin-top:1.4cqw"><span class="chip">North America</span><span class="chip">Europe</span><span class="chip">APAC</span></div></div>
+          <div class="card coral r" style="--d:.26s"><div style="font-weight:600;font-size:1.9cqw">Strategic investors</div><div class="stat-lab" style="margin-top:.5cqw">The semiconductor supply chain, aligned.</div><div style="margin-top:1.4cqw"><span class="chip">Samsung</span><span class="chip">SK Hynix</span><span class="chip">Micron</span></div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 23 WHY INVEST (section cover) -->
+  <section class="slide" data-theme="ink" data-title="Why Invest" data-section="The Ask" data-thumb="sec_invest">
+    <div class="stage">
+      <div class="bleed parallax" style="background-image:url('img/sec_invest.jpg')"></div><div class="scrim b"></div>
+      <span class="reg" style="opacity:.5"></span><span class="regnum">23.0</span><span class="regsec"><b>Section</b> &nbsp;The Ask</span>
+      <div class="sc-wrap">
+        <div class="eyebrow r">Why Invest</div>
+        <h2 class="r" style="--d:.1s;font-size:5.6cqw;font-weight:700;letter-spacing:-.04em;color:var(--cream);margin-top:1cqw;line-height:1">The defining company of the AI&nbsp;era.</h2>
+        <div class="grid4 r" style="--d:.24s;margin-top:2cqw;gap:1.4cqw;max-width:76cqw">
+          <div><div style="color:var(--coral2);font-weight:700;font-size:1.2cqw">01</div><div style="font-weight:600;font-size:1.6cqw;color:var(--cream);margin-top:.4cqw">Category-leading growth</div></div>
+          <div><div style="color:var(--coral2);font-weight:700;font-size:1.2cqw">02</div><div style="font-weight:600;font-size:1.6cqw;color:var(--cream);margin-top:.4cqw">Safety as durable trust</div></div>
+          <div><div style="color:var(--coral2);font-weight:700;font-size:1.2cqw">03</div><div style="font-weight:600;font-size:1.6cqw;color:var(--cream);margin-top:.4cqw">Locked-in compute</div></div>
+          <div><div style="color:var(--coral2);font-weight:700;font-size:1.2cqw">04</div><div style="font-weight:600;font-size:1.6cqw;color:var(--cream);margin-top:.4cqw">Clear path to IPO</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 HIGHLIGHTS -->
+  <section class="slide" data-theme="light" data-title="Key Investment Highlights" data-section="The Ask" data-thumb="sec_highlights">
+    <div class="stage">
+      <span class="reg"></span><span class="regnum">24.0</span><span class="regsec"><b>Section</b> &nbsp;The Ask</span>
+      <div class="pad">
+        <div class="eyebrow r">Key Investment Highlights</div>
+        <h2 class="sec r" style="--d:.06s;font-size:3.2cqw;margin-top:1cqw">The numbers, in one view.</h2>
+        <div class="grid4 colflow" style="top:14.5cqw;bottom:6.8cqw;grid-auto-rows:1fr">
+          <div class="card r" style="--d:.06s"><div class="stat-num" style="font-size:3.2cqw"><span data-count="965" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Valuation</div></div>
+          <div class="card coral r" style="--d:.1s"><div class="stat-num" style="font-size:3.2cqw"><span data-count="45" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Run-rate revenue</div></div>
+          <div class="card r" style="--d:.14s"><div class="stat-num" style="font-size:3.2cqw">~80×</div><div class="stat-lab">Growth in 18 months</div></div>
+          <div class="card ink r" style="--d:.18s"><div class="stat-num" style="font-size:3.2cqw;color:var(--cream)"><span data-count="1000" data-suffix="+">0</span></div><div class="stat-lab">$1M+ customers</div></div>
+          <div class="card r" style="--d:.22s"><div class="stat-num" style="font-size:3.2cqw">#1</div><div class="stat-lab">US business AI adoption</div></div>
+          <div class="card r" style="--d:.26s"><div class="stat-num" style="font-size:3.2cqw">5 GW</div><div class="stat-lab">Trainium compute secured</div></div>
+          <div class="card r" style="--d:.3s"><div class="stat-num" style="font-size:3.2cqw">$65B</div><div class="stat-lab">Series H raised</div></div>
+          <div class="card coral r" style="--d:.34s"><div class="stat-num" style="font-size:3.2cqw">IPO</div><div class="stat-lab">Confidentially filed</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
+    </div>
+  </section>
+
+  <!-- 25 CLOSING -->
+  <section class="slide" data-theme="ink" data-title="Closing" data-section="The Ask" data-thumb="sec_closing">
+    <div class="stage">
+      <div class="bleed parallax" style="background-image:url('img/sec_closing.jpg')"></div><div class="scrim b"></div>
+      <div class="sc-wrap" style="bottom:auto;top:34cqw">
+        <div class="wm r" style="font-size:2.2cqw;color:var(--cream)">Anthropic<span class="dot"></span></div>
+        <h2 class="r" style="--d:.12s;font-size:7cqw;font-weight:700;letter-spacing:-.04em;color:var(--cream);margin-top:1.4cqw;line-height:.95">Build the future.<br>Safely.</h2>
+        <div class="r" style="--d:.28s;margin-top:2cqw;font-size:1.5cqw;color:var(--muted-d)">investors@anthropic.com &nbsp;·&nbsp; anthropic.com</div>
+      </div>
+      <div class="foot" style="border:none"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Illustrative design deck · figures from public reporting</span></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="counter" id="counter"><span class="nav-b" id="prevB">‹</span><span><span class="c-cur" id="cCur">01</span> / <span id="cTot">25</span></span><span class="secname" id="secName">Intro</span><span class="nav-b" id="nextB">›</span></div>
+<div class="dots" id="dots"></div>
+<div class="hint"><b>↑↓</b> navigate &nbsp; <b>G</b> overview &nbsp; <b>F</b> fullscreen</div>
+<div class="overview" id="overview"><div class="ov-title">Deck overview <span>Click any slide · Esc to close</span></div><div class="ov-grid" id="ovGrid"></div></div>
+
+<script>
+(function(){
+  "use strict";
+  const deck=document.getElementById('deck'), slides=Array.from(deck.querySelectorAll('.slide')), N=slides.length;
+  let current=0;
+  document.getElementById('cTot').textContent=String(N).padStart(2,'0');
+  const splash=document.getElementById('splash');
+  requestAnimationFrame(()=>splash.classList.add('go'));
+  setTimeout(()=>{splash.classList.add('hide');activate(0);},1500);
+
+  const logos=[["Notion","notion"],["Snowflake","snowflake"],["Cloudflare","cloudflare"],["GitLab","gitlab"],["Replit","replit"],["Perplexity","perplexity"],["Quora","quora"],["Zoom","zoom"],["DoorDash","doordash"],["SAP","sap"],["Asana","asana"],["Intercom","intercom"]];
+  const lw=document.getElementById('logos');
+  if(lw)logos.forEach(([n,s])=>{const d=document.createElement('div');d.className='logo';d.setAttribute('translate','no');d.innerHTML='<img src="logos/'+s+'.png" alt="'+n+'" loading="lazy" onerror="this.style.display=\'none\'"><span>'+n+'</span>';lw.appendChild(d);});
+
+  const dots=document.getElementById('dots'), ovGrid=document.getElementById('ovGrid');
+  slides.forEach((s,i)=>{
+    const d=document.createElement('div');d.className='dot';d.title=s.dataset.title;d.onclick=()=>go(i);dots.appendChild(d);
+    const c=document.createElement('div');c.className='ov-cell';
+    const thumb=s.dataset.thumb?('<div class="ov-bg" style="background-image:url(img/'+s.dataset.thumb+'.jpg)"></div>'):'';
+    c.innerHTML=thumb+'<div class="ov-t"><div class="n">'+String(i+1).padStart(2,'0')+'</div><div class="t">'+s.dataset.title+'</div></div>';
+    c.onclick=()=>{overview.classList.remove('open');go(i);};ovGrid.appendChild(c);
+  });
+  const dotEls=Array.from(dots.children);
+
+  function animateCounters(sl){
+    sl.querySelectorAll('[data-count]').forEach(el=>{
+      if(el.dataset.done)return;el.dataset.done="1";
+      const t=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||"0"),pre=el.dataset.prefix||"",suf=el.dataset.suffix||"",plain=el.dataset.plain;
+      const dur=1400,t0=performance.now();
+      function fmt(v){if(plain)return String(Math.round(v));let s=dec>0?v.toFixed(dec):Math.round(v).toLocaleString('en-US');return pre+s+suf;}
+      function step(now){let p=Math.min(1,(now-t0)/dur);p=1-Math.pow(1-p,3);el.textContent=fmt(t*p);if(p<1)requestAnimationFrame(step);else el.textContent=fmt(t);}
+      requestAnimationFrame(step);
+    });
+  }
+  function animateBars(sl){sl.querySelectorAll('.bar[data-h]').forEach(b=>requestAnimationFrame(()=>b.style.height=b.dataset.h+'%'));sl.querySelectorAll('.hbar[data-w]').forEach(b=>requestAnimationFrame(()=>b.style.width=b.dataset.w+'%'));}
+
+  let revDrawn=false;
+  function drawRev(){
+    if(revDrawn)return;revDrawn=true;const svg=document.getElementById('revChart');if(!svg)return;
+    const data=[["Jan'24",0.087],["Dec'24",1],["May'25",3],["Jul'25",4],["Aug'25",5],["Oct'25",7],["Dec'25",9],["Feb'26",14],["Mar'26",19],["Apr'26",30],["May'26",45]];
+    const W=1000,H=360,padB=44,padT=20,padL=10,padR=10,max=46,n=data.length,NS="http://www.w3.org/2000/svg";
+    const x=i=>padL+i*((W-padL-padR)/(n-1)),y=v=>padT+(H-padT-padB)*(1-v/max);
+    let dLine="";data.forEach((p,i)=>dLine+=(i?"L":"M")+x(i)+" "+y(p[1])+" ");
+    const dArea=dLine+"L"+x(n-1)+" "+(H-padB)+" L"+x(0)+" "+(H-padB)+" Z";
+    const defs=document.createElementNS(NS,"defs");defs.innerHTML='<linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8987A" stop-opacity="0.5"/><stop offset="1" stop-color="#E8987A" stop-opacity="0"/></linearGradient>';svg.appendChild(defs);
+    const area=document.createElementNS(NS,"path");area.setAttribute("d",dArea);area.setAttribute("fill","url(#rg)");area.setAttribute("opacity","0");area.style.transition="opacity 1.4s ease";svg.appendChild(area);
+    const line=document.createElementNS(NS,"path");line.setAttribute("d",dLine);line.setAttribute("fill","none");line.setAttribute("stroke","#E8987A");line.setAttribute("stroke-width","3.5");line.setAttribute("stroke-linecap","round");line.setAttribute("stroke-linejoin","round");svg.appendChild(line);
+    const len=line.getTotalLength();line.style.strokeDasharray=len;line.style.strokeDashoffset=len;line.style.transition="stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1)";
+    requestAnimationFrame(()=>{line.style.strokeDashoffset=0;area.setAttribute("opacity","1");});
+    data.forEach((p,i)=>{const X=x(i),Y=y(p[1]);
+      const c=document.createElementNS(NS,"circle");c.setAttribute("cx",X);c.setAttribute("cy",Y);c.setAttribute("r","0");c.setAttribute("fill","#F0EEE6");c.setAttribute("stroke","#D97757");c.setAttribute("stroke-width","2.5");c.style.transition="r .4s ease "+(i*0.12+0.6)+"s";svg.appendChild(c);requestAnimationFrame(()=>c.setAttribute("r","5"));
+      if(i%2||i===n-1){const lab=document.createElementNS(NS,"text");lab.setAttribute("x",X);lab.setAttribute("y",H-14);lab.setAttribute("text-anchor","middle");lab.setAttribute("fill","rgba(240,238,230,.6)");lab.setAttribute("font-size","17");lab.setAttribute("font-family","Inter");lab.textContent=p[0];svg.appendChild(lab);}
+      if(i===n-1||i===0||i===7){const v=document.createElementNS(NS,"text");v.setAttribute("x",X);v.setAttribute("y",Y-14);v.setAttribute("text-anchor","middle");v.setAttribute("fill","#F0EEE6");v.setAttribute("font-size","22");v.setAttribute("font-weight","700");v.setAttribute("font-family","Inter");v.textContent=(p[1]<1?"$87M":"$"+p[1]+"B");v.style.opacity="0";v.style.transition="opacity .5s ease "+(i*0.1+1)+"s";svg.appendChild(v);requestAnimationFrame(()=>v.style.opacity="1");}
+    });
+  }
+
+  function activate(i){
+    slides.forEach((s,j)=>s.classList.toggle('is-active',j===i));
+    dotEls.forEach((d,j)=>d.classList.toggle('act',j===i));
+    current=i;
+    document.getElementById('cCur').textContent=String(i+1).padStart(2,'0');
+    document.getElementById('secName').textContent=slides[i].dataset.section||'';
+    document.getElementById('progress').style.width=((i+1)/N*100)+'%';
+    animateCounters(slides[i]);animateBars(slides[i]);
+    if(slides[i].querySelector('#revChart'))drawRev();
+  }
+
+  function go(i){i=Math.max(0,Math.min(N-1,i));slides[i].scrollIntoView({behavior:'smooth'});}
+  document.getElementById('nextB').onclick=()=>go(current+1);
+  document.getElementById('prevB').onclick=()=>go(current-1);
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>0.55){const i=slides.indexOf(e.target);if(i!==current)activate(i);}}),{threshold:[0.55]});
+  slides.forEach(s=>io.observe(s));
+  document.querySelectorAll('[data-go]').forEach(el=>{el.style.cursor='pointer';el.onclick=()=>go(parseInt(el.dataset.go));});
+
+  const overview=document.getElementById('overview');
+  document.addEventListener('keydown',e=>{
+    if(['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)){e.preventDefault();go(current+1);}
+    else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);}else if(e.key==='End'){e.preventDefault();go(N-1);}
+    else if(e.key==='g'||e.key==='G'){overview.classList.toggle('open');}
+    else if(e.key==='Escape'){overview.classList.remove('open');}
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+
+  // parallax
+  window.addEventListener('mousemove',e=>{
+    const nx=(e.clientX/window.innerWidth-.5),ny=(e.clientY/window.innerHeight-.5);
+    const act=slides[current];
+    act.querySelectorAll('.parallax').forEach(p=>{p.style.transform='scale(1.12) translate('+(nx*-1.4)+'%,'+(ny*-1.4)+'%)';});
+    act.querySelectorAll('.tilt').forEach(card=>{const r=card.getBoundingClientRect();const cx=(e.clientX-(r.left+r.width/2))/r.width,cy=(e.clientY-(r.top+r.height/2))/r.height;if(Math.abs(cx)<1.3&&Math.abs(cy)<1.3)card.style.transform='perspective(800px) rotateY('+(cx*5)+'deg) rotateX('+(-cy*5)+'deg)';else card.style.transform='';});
+  });
+  let ty=0;
+  deck.addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
+  deck.addEventListener('touchend',e=>{const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>50)go(current+(dy>0?1:-1));},{passive:true});
+})();
+</script>
+</body>
+</html>
