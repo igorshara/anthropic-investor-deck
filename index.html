@@ -66,6 +66,21 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
 .card.coral{background:var(--coral);border-color:transparent;color:var(--cream)}
 .card.ink{background:var(--ink);border-color:transparent;color:var(--cream)}
 .card.glass{background:rgba(14,14,12,.34);backdrop-filter:blur(8px);border-color:rgba(240,238,230,.16);color:var(--cream)}
+.card{transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .4s}
+.card:hover{transform:translateY(-.5cqw);box-shadow:0 2.4cqw 4.5cqw -1.8cqw rgba(0,0,0,.3);border-color:rgba(217,119,87,.4)}
+.card.coral:hover,.card.ink:hover,.card.glass:hover{box-shadow:0 2.4cqw 4.5cqw -1.8cqw rgba(0,0,0,.55);border-color:transparent}
+/* highlight bento cards */
+.hl{position:relative;overflow:hidden;display:flex;flex-direction:column;padding:2.1cqw 2cqw 1.8cqw}
+.hl-acc{position:absolute;top:0;left:0;height:.38cqw;width:0;background:var(--coral);transition:width 1s var(--ease) var(--d,0s)}
+.is-active .hl .hl-acc{width:42%}
+.hl.coral .hl-acc,.hl.ink .hl-acc{background:var(--cream)}
+.hl-ic{position:absolute;top:1.7cqw;right:1.7cqw;width:2.5cqw;height:2.5cqw;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.45;transition:.4s}
+.hl:hover .hl-ic{opacity:.85;transform:translateY(-.2cqw) scale(1.06)}
+.hl .stat-lab{margin-top:.4cqw;font-weight:600;color:var(--ink)}
+.hl.coral .stat-lab,.hl.ink .stat-lab{color:var(--cream)}
+.hl-ctx{margin-top:auto;font-size:1.05cqw;color:var(--muted-l);padding-top:1cqw;border-top:1px solid var(--line-l)}
+.hl.coral .hl-ctx{color:rgba(240,238,230,.75);border-color:rgba(240,238,230,.25)}
+.hl.ink .hl-ctx{color:rgba(240,238,230,.7);border-color:rgba(240,238,230,.18)}
 .stat-num{font-weight:700;letter-spacing:-.045em;line-height:.9}
 .stat-lab{font-size:1.3cqw;line-height:1.3;margin-top:.9cqw;color:var(--muted-l)}
 .card.coral .stat-lab,.card.ink .stat-lab,.card.glass .stat-lab{color:rgba(240,238,230,.8)}
@@ -97,10 +112,10 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
 .toc-row .t{font-size:2.3cqw;font-weight:700;letter-spacing:-.03em;color:var(--cream)}
 .toc-row .s{font-size:1.1cqw;color:var(--muted-d)}
 .toc-cards{display:flex;flex-direction:column;gap:1.3cqw}
-.toc-card{position:relative;border-radius:1.2cqw;overflow:hidden;height:5cqw;cursor:pointer;transition:transform .5s var(--ease)}
-.toc-card:hover{transform:translateY(-.4cqw)}
-.toc-card .lbl{position:absolute;inset:0;padding:1.3cqw 1.6cqw;display:flex;flex-direction:column;justify-content:space-between;z-index:2}
-.toc-card .rng{font-weight:700;font-size:2.6cqw;color:var(--cream);letter-spacing:-.03em;line-height:1}
+.toc-card{position:relative;border-radius:1.2cqw;overflow:hidden;height:6.4cqw;cursor:pointer;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.toc-card:hover{transform:translateY(-.5cqw);box-shadow:0 2cqw 4cqw -1.5cqw rgba(0,0,0,.5)}
+.toc-card .lbl{position:absolute;inset:0;padding:1.4cqw 1.8cqw;display:flex;flex-direction:column;justify-content:flex-end;gap:.3cqw;z-index:2}
+.toc-card .rng{font-weight:700;font-size:2.4cqw;color:var(--cream);letter-spacing:-.03em;line-height:1}
 .toc-card .ttl{font-size:1.4cqw;font-weight:600;color:var(--cream)}
 
 /* bars / charts */
@@ -641,16 +656,16 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
       <div class="pad">
         <div class="eyebrow r">Key Investment Highlights</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.2cqw;margin-top:1cqw">The numbers, in one view.</h2>
-        <div class="grid4 colflow" style="top:14.5cqw;bottom:6.8cqw;grid-auto-rows:1fr">
-          <div class="card r" style="--d:.06s"><div class="stat-num" style="font-size:3.2cqw"><span data-count="965" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Valuation</div></div>
-          <div class="card coral r" style="--d:.1s"><div class="stat-num" style="font-size:3.2cqw"><span data-count="45" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Run-rate revenue</div></div>
-          <div class="card r" style="--d:.14s"><div class="stat-num" style="font-size:3.2cqw">~80×</div><div class="stat-lab">Growth in 18 months</div></div>
-          <div class="card ink r" style="--d:.18s"><div class="stat-num" style="font-size:3.2cqw;color:var(--cream)"><span data-count="1000" data-suffix="+">0</span></div><div class="stat-lab">$1M+ customers</div></div>
-          <div class="card r" style="--d:.22s"><div class="stat-num" style="font-size:3.2cqw">#1</div><div class="stat-lab">US business AI adoption</div></div>
-          <div class="card r" style="--d:.26s"><div class="stat-num" style="font-size:3.2cqw">5 GW</div><div class="stat-lab">Trainium compute secured</div></div>
-          <div class="card r" style="--d:.3s"><div class="stat-num" style="font-size:3.2cqw">$65B</div><div class="stat-lab">Series H raised</div></div>
-          <div class="card coral r" style="--d:.34s"><div class="stat-num" style="font-size:3.2cqw">IPO</div><div class="stat-lab">Confidentially filed</div></div>
-        </div>
+        <div class="grid4 colflow" style="top:14cqw;bottom:6.5cqw;grid-auto-rows:1fr">
+          <div class="card hl r" style="--d:0.06s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><path d="M3 8l3-5h12l3 5-9 13z"/><path d="M3 8h18M10 3l-1.5 5 3.5 13 3.5-13L14 3"/></svg><div class="stat-num" style="font-size:3cqw"><span data-count="965" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab" style="font-size:1.3cqw">Valuation</div><div class="hl-ctx">Most valuable AI company</div></div>
+          <div class="card hl coral r" style="--d:0.10s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M21 7v5h-5"/></svg><div class="stat-num" style="font-size:3cqw"><span data-count="45" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab" style="font-size:1.3cqw">Run-rate revenue</div><div class="hl-ctx">Up ~80× in 18 months</div></div>
+          <div class="card hl r" style="--d:0.14s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><path d="M5 15c-1.2 2.5-.5 5-.5 5s2.5.7 5-.5M9.5 11.5a8 8 0 0 1 7.5-8.5c1 4-1 8-4.5 11.5l-3.5 .5z"/><circle cx="14" cy="9" r="1.1"/></svg><div class="stat-num" style="font-size:3cqw">~80×</div><div class="stat-lab" style="font-size:1.3cqw">Growth in 18 months</div><div class="hl-ctx">Fastest in software history</div></div>
+          <div class="card hl ink r" style="--d:0.18s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5M20.5 20a5.5 5.5 0 0 0-4-5.3"/></svg><div class="stat-num" style="font-size:3cqw"><span data-count="1000" data-prefix="" data-suffix="+">0+</span></div><div class="stat-lab" style="font-size:1.3cqw">$1M+ customers</div><div class="hl-ctx">Doubled in two months</div></div>
+          <div class="card hl r" style="--d:0.22s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><path d="M8 4h8v4.5a4 4 0 0 1-8 0z"/><path d="M8 5.5H5.5v1.5a3 3 0 0 0 3 3M16 5.5h2.5v1.5a3 3 0 0 1-3 3M10 13.5h4V17h-4zM8 20h8"/></svg><div class="stat-num" style="font-size:3cqw">#1</div><div class="stat-lab" style="font-size:1.3cqw">US business AI adoption</div><div class="hl-ctx">Now ahead of OpenAI</div></div>
+          <div class="card hl r" style="--d:0.26s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><path d="M13 2.5L5 13.5h5l-1 8 8-11.5h-5z"/></svg><div class="stat-num" style="font-size:3cqw">5 GW</div><div class="stat-lab" style="font-size:1.3cqw">Trainium compute secured</div><div class="hl-ctx">Amazon + Google deals</div></div>
+          <div class="card hl r" style="--d:0.30s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><path d="M3.5 9l8.5-5 8.5 5M5 9.5v8M19 9.5v8M9 9.5v8M15 9.5v8M3.5 20h17"/></svg><div class="stat-num" style="font-size:3cqw">$65B</div><div class="stat-lab" style="font-size:1.3cqw">Series H raised</div><div class="hl-ctx">Largest private AI round</div></div>
+          <div class="card hl coral r" style="--d:0.34s"><span class="hl-acc"></span><svg class="hl-ic" viewBox="0 0 24 24"><path d="M6.5 9a5.5 5.5 0 0 1 11 0c0 5.5 2 6.5 2 6.5H4.5s2-1 2-6.5M10 19.5a2 2 0 0 0 4 0"/></svg><div class="stat-num" style="font-size:3cqw">IPO</div><div class="stat-lab" style="font-size:1.3cqw">Confidentially filed</div><div class="hl-ctx">IPO as soon as fall 2026</div></div>
+          </div>
       </div>
       <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
     </div>
