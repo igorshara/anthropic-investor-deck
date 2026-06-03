@@ -58,6 +58,9 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
 .scrim.l{background:linear-gradient(100deg,rgba(14,14,12,.8) 0%,rgba(14,14,12,.45) 42%,rgba(14,14,12,.08) 70%)}
 .scrim.full{background:rgba(14,14,12,.42)}
 .imgpanel{position:absolute;border-radius:1.2cqw;overflow:hidden;z-index:2}
+.tex{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:.16;-webkit-mask-image:radial-gradient(135% 105% at 84% 88%,#000,transparent 66%);mask-image:radial-gradient(135% 105% at 84% 88%,#000,transparent 66%)}
+.slide[data-theme="light"] .card:not(.coral):not(.ink):not(.glass){background:rgba(244,242,235,.7);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border:1px solid rgba(25,21,15,.09)}
+.slide[data-theme="light"] .logo{background:rgba(244,242,235,.6);backdrop-filter:blur(6px)}
 .imgpanel .bleed{border-radius:1.2cqw}
 
 /* cards */
@@ -249,7 +252,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 3 MARKET -->
   <section class="slide" data-theme="light" data-title="AI Market Opportunity" data-section="The Opportunity" data-thumb="sec_market">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">3.0</span><span class="regsec"><b>Section</b> &nbsp;The Opportunity</span>
+      <div class="tex" style="background-image:url('img/sec_market.jpg')"></div><span class="reg"></span><span class="regnum">3.0</span><span class="regsec"><b>Section</b> &nbsp;The Opportunity</span>
       <div class="pad">
         <h2 class="sec r" style="font-size:4.4cqw;max-width:36cqw">A market<br>measured<br>in trillions.</h2>
         <div style="position:absolute;left:5.6cqw;bottom:7cqw">
@@ -291,7 +294,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 5 OVERVIEW -->
   <section class="slide" data-theme="light" data-title="Anthropic Overview" data-section="The Company" data-thumb="obj_foundation">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">5.0</span><span class="regsec"><b>Section</b> &nbsp;The Company</span>
+      <div class="tex" style="background-image:url('img/obj_foundation.jpg')"></div><span class="reg"></span><span class="regnum">5.0</span><span class="regsec"><b>Section</b> &nbsp;The Company</span>
       <div class="pad">
         <div class="eyebrow r">Anthropic Overview</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.4cqw;margin-top:1cqw;max-width:44cqw">The most valuable AI company in the world.</h2><div class="body r" style="--d:.1s;margin-top:.8cqw;max-width:66cqw;font-size:1.3cqw">Founded safety-first in 2021 — now the fastest-growing company in the history of enterprise software, and the new #1 in business AI.</div>
@@ -323,7 +326,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 7 FOUNDERS -->
   <section class="slide" data-theme="light" data-title="Founders & Leadership" data-section="The Company" data-thumb="obj_foundation">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">7.0</span><span class="regsec"><b>Section</b> &nbsp;Leadership</span>
+      <div class="tex" style="background-image:url('img/obj_foundation.jpg')"></div><span class="reg"></span><span class="regnum">7.0</span><span class="regsec"><b>Section</b> &nbsp;Leadership</span>
       <div class="pad">
         <div class="eyebrow r">Founders & Leadership</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.2cqw;margin-top:1cqw;max-width:58cqw">Founded by the team that defined modern AI&nbsp;safety.</h2>
@@ -370,17 +373,17 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 9 PORTFOLIO -->
   <section class="slide" data-theme="light" data-title="Product Portfolio" data-section="The Product" data-thumb="obj_tiers">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">9.0</span><span class="regsec"><b>Section</b> &nbsp;The Product</span>
+      <div class="tex" style="background-image:url('img/obj_tiers.jpg')"></div><span class="reg"></span><span class="regnum">9.0</span><span class="regsec"><b>Section</b> &nbsp;The Product</span>
       <div class="pad">
         <div class="eyebrow r">Product Portfolio</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Three tiers. One frontier.</h2>
         <div class="grid3 colflow" style="top:15cqw;bottom:15.5cqw">
           <div class="card ink r" style="--d:.1s"><div style="font-weight:600;font-size:2.4cqw;color:var(--cream)">Opus 4.8</div><div class="stat-lab" style="margin-top:.7cqw">Maximum capability. Long-horizon agentic coding & reasoning. 1M-token context.</div>
-            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:98%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:52%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:42%"></i></div></div></div>
+            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:98%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:52%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:42%"></i></div></div><div style="margin-top:1.2cqw"><span class="chip" style="font-size:1.05cqw">Best for · agents & hardest problems</span></div></div>
           <div class="card r" style="--d:.18s"><div style="font-weight:600;font-size:2.4cqw">Sonnet 4.6</div><div class="stat-lab" style="margin-top:.7cqw">The balanced workhorse — speed, cost & quality for production at scale.</div>
-            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:82%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:82%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:78%"></i></div></div></div>
+            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:82%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:82%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:78%"></i></div></div><div style="margin-top:1.2cqw"><span class="chip" style="font-size:1.05cqw">Best for · production at scale</span></div></div>
           <div class="card r" style="--d:.26s"><div style="font-weight:600;font-size:2.4cqw">Haiku 4.5</div><div class="stat-lab" style="margin-top:.7cqw">Low-latency, low-cost. Real-time and high-volume workloads.</div>
-            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:60%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:98%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:95%"></i></div></div></div>
+            <div class="metric"><span class="ml">Capability</span><div class="track"><i style="--w:60%"></i></div></div><div class="metric"><span class="ml">Speed</span><div class="track"><i style="--w:98%"></i></div></div><div class="metric"><span class="ml">Efficiency</span><div class="track"><i style="--w:95%"></i></div></div><div style="margin-top:1.2cqw"><span class="chip" style="font-size:1.05cqw">Best for · real-time & volume</span></div></div>
         </div>
         <div style="position:absolute;left:5.6cqw;right:5.6cqw;bottom:6.5cqw" class="grid2">
           <div class="card coral r" style="--d:.32s;padding:1.5cqw 2cqw"><div style="font-weight:700;font-size:1.8cqw">Claude Code</div><div class="stat-lab" style="font-size:1.2cqw;margin-top:.3cqw">Agentic coding — $1B ARR within 6 months.</div></div>
@@ -394,7 +397,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 10 ENTERPRISE ADOPTION -->
   <section class="slide" data-theme="light" data-title="Enterprise Adoption" data-section="Traction" data-thumb="sec_highlights">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">10.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="tex" style="background-image:url('img/sec_highlights.jpg')"></div><span class="reg"></span><span class="regnum">10.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
       <div class="pad">
         <div class="eyebrow r">Enterprise Adoption</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw;max-width:42cqw">For the first time, #1 in US business&nbsp;AI.</h2>
@@ -432,7 +435,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 12 FUNDING -->
   <section class="slide" data-theme="light" data-title="Funding History" data-section="Traction" data-thumb="sec_highlights">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">12.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="tex" style="background-image:url('img/sec_highlights.jpg')"></div><span class="reg"></span><span class="regnum">12.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
       <div class="pad">
         <div class="eyebrow r">Funding History</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Valuation, compounding.</h2>
@@ -456,7 +459,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 13 PARTNERSHIPS -->
   <section class="slide" data-theme="light" data-title="Strategic Partnerships" data-section="Traction" data-thumb="sec_compute">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">13.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="tex" style="background-image:url('img/sec_compute.jpg')"></div><span class="reg"></span><span class="regnum">13.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
       <div class="pad">
         <div class="eyebrow r">Strategic Partnerships</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.4cqw;margin-top:1cqw">Backed by the largest infrastructure deals in&nbsp;AI.</h2>
@@ -508,7 +511,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 16 TECH -->
   <section class="slide" data-theme="light" data-title="Technology & Research" data-section="The Moat" data-thumb="obj_research">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">16.0</span><span class="regsec"><b>Section</b> &nbsp;The Moat</span>
+      <div class="tex" style="background-image:url('img/obj_research.jpg')"></div><span class="reg"></span><span class="regnum">16.0</span><span class="regsec"><b>Section</b> &nbsp;The Moat</span>
       <div class="pad">
         <div class="eyebrow r">Technology & Research</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">A research lab that ships.</h2>
@@ -566,7 +569,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 19 CUSTOMERS -->
   <section class="slide" data-theme="light" data-title="Enterprise Customers" data-section="Traction" data-thumb="tex_fabric">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">19.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="tex" style="background-image:url('img/tex_fabric.jpg')"></div><span class="reg"></span><span class="regnum">19.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
       <div class="pad">
         <div class="eyebrow r">Enterprise Customers</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Trusted where the stakes are highest.</h2>
@@ -579,15 +582,15 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 20 FINANCIAL -->
   <section class="slide" data-theme="light" data-title="Financial Performance" data-section="Traction" data-thumb="sec_financial">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">20.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
+      <div class="tex" style="background-image:url('img/sec_financial.jpg')"></div><span class="reg"></span><span class="regnum">20.0</span><span class="regsec"><b>Section</b> &nbsp;Traction</span>
       <div class="pad">
         <div class="eyebrow r">Financial Performance</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.6cqw;margin-top:1cqw">Growth — and a line of sight to profit.</h2><div class="body r" style="--d:.1s;margin-top:.8cqw;max-width:62cqw;font-size:1.35cqw">Anthropic trains frontier models for a fraction of competitors&rsquo; cost — and expects its first operating profit as inference economics compound in its favour.</div>
         <div class="grid4 colflow" style="top:16cqw;bottom:6.8cqw">
-          <div class="card vizcard r" style="--d:.1s"><div class="stat-num" style="font-size:3.4cqw"><span data-count="45" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Revenue run-rate · May 2026 — and accelerating.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><path d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5 L236 80 L4 80 Z" fill="#D97757" opacity="0.14"/><path class="draw" style="--len:340" d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5" fill="none" stroke="#D97757" stroke-width="3" stroke-linecap="round"/></svg></div>
-          <div class="card coral vizcard r" style="--d:.16s"><div class="stat-num" style="font-size:3.4cqw">130%</div><div class="stat-lab">Projected revenue surge to first operating profit.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><rect class="grow" x="44" y="52" width="60" height="28" rx="4" fill="#F0EEE6" opacity=".45"/><rect class="grow" x="150" y="8" width="60" height="72" rx="4" fill="#F0EEE6"/></svg></div>
-          <div class="card vizcard r" style="--d:.22s"><div class="stat-num" style="font-size:3.4cqw">4×</div><div class="stat-lab">Less spent than OpenAI to train comparable models.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><rect class="grow" x="36" y="6" width="58" height="74" rx="4" fill="#19150f" opacity=".18"/><rect class="grow" x="150" y="58" width="58" height="22" rx="4" fill="#D97757"/></svg></div>
-          <div class="card ink vizcard r" style="--d:.28s"><div class="stat-num" style="font-size:2.6cqw;color:var(--cream)">Margins ↑</div><div class="stat-lab">Gross margins expanding as inference costs fall.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><path d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5 L236 80 L4 80 Z" fill="#E8987A" opacity="0.14"/><path class="draw" style="--len:340" d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5" fill="none" stroke="#E8987A" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <div class="card vizcard r" style="--d:.1s"><svg class="hl-ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M21 7v5h-5"/></svg><div class="stat-num" style="font-size:3.4cqw"><span data-count="45" data-prefix="$" data-suffix="B">$0B</span></div><div class="stat-lab">Revenue run-rate · May 2026 — and accelerating.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><path d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5 L236 80 L4 80 Z" fill="#D97757" opacity="0.14"/><path class="draw" style="--len:340" d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5" fill="none" stroke="#D97757" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <div class="card coral vizcard r" style="--d:.16s"><svg class="hl-ic" viewBox="0 0 24 24"><path d="M12 3c2 3 4 4 4 8a4 4 0 0 1-8 0c0-2 1-3 2-4 0 2 2 2 2 4 1-1 1-2 1-3 0 1-1-3-1-5z"/></svg><div class="stat-num" style="font-size:3.4cqw">130%</div><div class="stat-lab">Projected revenue surge to first operating profit.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><rect class="grow" x="44" y="52" width="60" height="28" rx="4" fill="#F0EEE6" opacity=".45"/><rect class="grow" x="150" y="8" width="60" height="72" rx="4" fill="#F0EEE6"/></svg></div>
+          <div class="card vizcard r" style="--d:.22s"><svg class="hl-ic" viewBox="0 0 24 24"><path d="M12 3v18M6 8l-3 5h6zM18 8l-3 5h6zM4 13a2 2 0 0 0 4 0M14 13a2 2 0 0 0 4 0M8 21h8"/></svg><div class="stat-num" style="font-size:3.4cqw">4×</div><div class="stat-lab">Less spent than OpenAI to train comparable models.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><rect class="grow" x="36" y="6" width="58" height="74" rx="4" fill="#19150f" opacity=".18"/><rect class="grow" x="150" y="58" width="58" height="22" rx="4" fill="#D97757"/></svg></div>
+          <div class="card ink vizcard r" style="--d:.28s"><svg class="hl-ic" viewBox="0 0 24 24"><path d="M3 17l5-6 4 3 5-7 4 3"/></svg><div class="stat-num" style="font-size:2.6cqw;color:var(--cream)">Margins ↑</div><div class="stat-lab">Gross margins expanding as inference costs fall.</div><svg class="viz" viewBox="0 0 240 80" preserveAspectRatio="none" style="margin-top:auto"><path d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5 L236 80 L4 80 Z" fill="#E8987A" opacity="0.14"/><path class="draw" style="--len:340" d="M4 72 C 60 68, 110 52, 150 32 S 210 8, 236 5" fill="none" stroke="#E8987A" stroke-width="3" stroke-linecap="round"/></svg></div>
         </div>
       </div>
       <div class="foot"><span>Anthropic PBC · Investor Presentation · June 2026</span><span>Figures from public reporting · Illustrative design deck</span></div>
@@ -616,7 +619,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 22 GLOBAL -->
   <section class="slide" data-theme="light" data-title="Global Expansion" data-section="The Ask" data-thumb="sec_global">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">22.0</span><span class="regsec"><b>Section</b> &nbsp;Roadmap</span>
+      <div class="tex" style="background-image:url('img/sec_global.jpg')"></div><span class="reg"></span><span class="regnum">22.0</span><span class="regsec"><b>Section</b> &nbsp;Roadmap</span>
       <div class="pad">
         <div class="eyebrow r">Global Expansion</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.4cqw;margin-top:1cqw">From the enterprise to Main Street — worldwide.</h2>
@@ -652,7 +655,7 @@ h2.sec{font-weight:700;letter-spacing:-.04em;line-height:.96}
   <!-- 24 HIGHLIGHTS -->
   <section class="slide" data-theme="light" data-title="Key Investment Highlights" data-section="The Ask" data-thumb="sec_highlights">
     <div class="stage">
-      <span class="reg"></span><span class="regnum">24.0</span><span class="regsec"><b>Section</b> &nbsp;The Ask</span>
+      <div class="tex" style="background-image:url('img/sec_highlights.jpg')"></div><span class="reg"></span><span class="regnum">24.0</span><span class="regsec"><b>Section</b> &nbsp;The Ask</span>
       <div class="pad">
         <div class="eyebrow r">Key Investment Highlights</div>
         <h2 class="sec r" style="--d:.06s;font-size:3.2cqw;margin-top:1cqw">The numbers, in one view.</h2>
